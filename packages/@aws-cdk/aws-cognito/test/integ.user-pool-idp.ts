@@ -1,5 +1,5 @@
 import { App, CfnOutput, Stack } from '@aws-cdk/core';
-import { UserPool, UserPoolIdentityProviderAmazon } from '../lib';
+import { UserPool, UserPoolIdentityProviderAmazon, UserPoolIdentityProviderFacebook } from '../lib';
 
 /*
  * Stack verification steps
@@ -12,6 +12,12 @@ const stack = new Stack(app, 'integ-user-pool-idp');
 const userpool = new UserPool(stack, 'pool');
 
 new UserPoolIdentityProviderAmazon(stack, 'amazon', {
+  userPool: userpool,
+  clientId: 'amzn-client-id',
+  clientSecret: 'amzn-client-secret',
+});
+
+new UserPoolIdentityProviderFacebook(stack, 'facebook', {
   userPool: userpool,
   clientId: 'amzn-client-id',
   clientSecret: 'amzn-client-secret',

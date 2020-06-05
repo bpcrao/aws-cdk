@@ -2,6 +2,7 @@ import { IRole, PolicyDocument, PolicyStatement, Role, ServicePrincipal } from '
 import * as lambda from '@aws-cdk/aws-lambda';
 import { Construct, Duration, IResource, Lazy, Resource, Stack } from '@aws-cdk/core';
 import { CfnUserPool } from './cognito.generated';
+import { StandardAttribute } from './private/standard-attr';
 import { ICustomAttribute, RequiredAttributes } from './user-pool-attr';
 import { UserPoolClient, UserPoolClientOptions } from './user-pool-client';
 import { UserPoolDomain, UserPoolDomainOptions } from './user-pool-domain';
@@ -917,26 +918,6 @@ export class UserPool extends UserPoolBase {
     }
     return schema;
   }
-}
-
-const enum StandardAttribute {
-  ADDRESS = 'address',
-  BIRTHDATE = 'birthdate',
-  EMAIL = 'email',
-  FAMILY_NAME = 'family_name',
-  GENDER = 'gender',
-  GIVEN_NAME = 'given_name',
-  LOCALE = 'locale',
-  MIDDLE_NAME = 'middle_name',
-  NAME = 'name',
-  NICKNAME = 'nickname',
-  PHONE_NUMBER = 'phone_number',
-  PICTURE_URL = 'picture',
-  PREFERRED_USERNAME = 'preferred_username',
-  PROFILE_URL = 'profile',
-  TIMEZONE = 'zoneinfo',
-  LAST_UPDATE_TIME = 'updated_at',
-  WEBSITE = 'website',
 }
 
 function undefinedIfNoKeys(struct: object): object | undefined {
